@@ -18,11 +18,11 @@ namespace ProjetoAPIEmDupla.Controllers
 
         private bdDuplaEntities bd = new bdDuplaEntities();
 
-        public IEnumerable<Cliente> getCliente()
+        public ActionResult getCliente()
         {
-            IEnumerable<Cliente> Lista = bd.Cliente.ToList();
+            List<Cliente> Lista =  bd.Cliente.ToList();
 
-            return Lista;
+            return View(Lista);
         }
 
         public IEnumerable<Cliente> Teste()
@@ -30,6 +30,26 @@ namespace ProjetoAPIEmDupla.Controllers
             IEnumerable<Cliente> Lista = bd.Cliente.ToList();
 
             return Lista;
+        }
+
+        
+        public ActionResult Create()
+        {
+            ViewBag.Title = "Adicionar Cliente";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Cliente cliente)
+        {
+            if(ModelState.IsValid)
+            {
+                bd.Cliente.Add(cliente);
+                bd.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

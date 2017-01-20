@@ -120,3 +120,4 @@ C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\Antlr3.Runtim
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\ProjetoAPIEmDupla.csprojResolveAssemblyReference.cache
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\ProjetoAPIEmDupla.dll
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\ProjetoAPIEmDupla.pdb
+C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\Views\Home\Create.cshtml
