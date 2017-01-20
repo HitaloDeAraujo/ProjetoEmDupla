@@ -157,9 +157,7 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -193,21 +191,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\Cliente.cs">
+    <Compile Include="Models\Cliente.cs">
       <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ModeloDeDadosDupla.Context.cs">
+    <Compile Include="Models\ModeloDeDadosDupla.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloDeDadosDupla.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ModeloDeDadosDupla.cs">
+    <Compile Include="Models\ModeloDeDadosDupla.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ModeloDeDadosDupla.Designer.cs">
+    <Compile Include="Models\ModeloDeDadosDupla.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloDeDadosDupla.edmx</DependentUpon>
@@ -226,12 +224,12 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Controllers\ModeloDeDadosDupla.Context.tt">
+    <Content Include="Models\ModeloDeDadosDupla.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloDeDadosDupla.edmx</DependentUpon>
       <LastGenOutput>ModeloDeDadosDupla.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\ModeloDeDadosDupla.tt">
+    <Content Include="Models\ModeloDeDadosDupla.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloDeDadosDupla.edmx</DependentUpon>
       <LastGenOutput>ModeloDeDadosDupla.cs</LastGenOutput>
@@ -265,11 +263,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Controllers\ModeloDeDadosDupla.edmx">
+    <EntityDeploy Include="Models\ModeloDeDadosDupla.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloDeDadosDupla.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Controllers\ModeloDeDadosDupla.edmx.diagram">
+    <Content Include="Models\ModeloDeDadosDupla.edmx.diagram">
       <DependentUpon>ModeloDeDadosDupla.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -293,6 +291,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\getCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
