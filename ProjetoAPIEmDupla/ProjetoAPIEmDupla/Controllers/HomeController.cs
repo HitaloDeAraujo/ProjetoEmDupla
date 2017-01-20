@@ -24,5 +24,12 @@ namespace ProjetoAPIEmDupla.Controllers
 
             return Lista;
         }
+
+        public IEnumerable<Cliente> Teste()
+        {
+            IEnumerable<Cliente> Lista = bd.Cliente.ToList();
+
+            return Lista;
+        }
     }
 }
