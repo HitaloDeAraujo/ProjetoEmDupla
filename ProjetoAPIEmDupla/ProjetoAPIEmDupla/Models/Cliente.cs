@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjetoAPIEmDupla.Controllers
+namespace ProjetoAPIEmDupla.Models
 {
     using System;
     using System.Collections.Generic;
