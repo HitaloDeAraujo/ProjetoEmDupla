@@ -121,3 +121,7 @@ C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\Projeto
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\ProjetoAPIEmDupla.dll
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\obj\Debug\ProjetoAPIEmDupla.pdb
 C:\Projetos\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\Views\Home\Create.cshtml
+C:\Users\Usuário\Documents\testes\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\EntityFramework.dll
+C:\Users\Usuário\Documents\testes\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\EntityFramework.SqlServer.dll
+C:\Users\Usuário\Documents\testes\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\EntityFramework.xml
+C:\Users\Usuário\Documents\testes\ProjetoEmDupla\ProjetoAPIEmDupla\ProjetoAPIEmDupla\bin\EntityFramework.SqlServer.xml
