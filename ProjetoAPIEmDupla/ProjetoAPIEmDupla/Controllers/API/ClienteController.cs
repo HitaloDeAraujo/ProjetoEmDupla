@@ -22,5 +22,21 @@ namespace ProjetoAPIEmDupla.Controllers.API
 
             return cliente;
         }
+
+        public string Post(Cliente cliente)
+        {
+            try
+            {
+                bd.Cliente.Add(cliente);
+                bd.SaveChanges();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            
+
+        }
     }
 }
