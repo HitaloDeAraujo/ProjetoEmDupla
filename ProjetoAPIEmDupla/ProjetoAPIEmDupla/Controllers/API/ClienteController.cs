@@ -14,6 +14,7 @@ namespace ProjetoAPIEmDupla.Controllers.API
 
         public IEnumerable<OrdemServico> Get(string id)
         {
+            //Hitalo
             bd.Configuration.ProxyCreationEnabled = false;
 
             var cliente = bd.OrdemServico.Include("Cliente").Where(m => m.IdCliente == id).ToList();
@@ -25,7 +26,6 @@ namespace ProjetoAPIEmDupla.Controllers.API
 
         public string Post(Cliente cliente)
         {
-            //teste
             try
             {
                 bd.Cliente.Add(cliente);
@@ -36,8 +36,6 @@ namespace ProjetoAPIEmDupla.Controllers.API
             {
                 return ex.Message;
             }
-            
-
         }
     }
 }
