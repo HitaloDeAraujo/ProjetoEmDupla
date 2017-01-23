@@ -26,5 +26,8 @@ namespace ProjetoAPIEmDupla.Models
         }
     
         public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<OrdemServico> OrdemServico { get; set; }
+        public virtual DbSet<Servico> Servico { get; set; }
+        public virtual DbSet<ServicoPorOS> ServicoPorOS { get; set; }
     }
 }

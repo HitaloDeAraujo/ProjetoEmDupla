@@ -214,6 +214,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrdemServico.cs">
+      <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Servico.cs">
+      <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServicoPorOS.cs">
+      <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

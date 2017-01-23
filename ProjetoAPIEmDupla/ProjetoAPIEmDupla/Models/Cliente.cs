@@ -14,7 +14,20 @@ namespace ProjetoAPIEmDupla.Models
     
     public partial class Cliente
     {
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cliente()
+        {
+            this.OrdemServico = new HashSet<OrdemServico>();
+        }
+    
+        public string IdCliente { get; set; }
         public string Nome { get; set; }
+        public string Email { get; set; }
+        public Nullable<System.DateTime> DataNasc { get; set; }
+        public string Celular { get; set; }
+        public string TelRes { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdemServico> OrdemServico { get; set; }
     }
 }

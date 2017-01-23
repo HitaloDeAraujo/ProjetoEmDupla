@@ -43,12 +43,20 @@ namespace ProjetoAPIEmDupla.Controllers
         [HttpPost]
         public ActionResult Create(Cliente cliente)
         {
-            if(ModelState.IsValid)
+            try
             {
-                bd.Cliente.Add(cliente);
-                bd.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    bd.Cliente.Add(cliente);
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+            
             return View();
         }
     }

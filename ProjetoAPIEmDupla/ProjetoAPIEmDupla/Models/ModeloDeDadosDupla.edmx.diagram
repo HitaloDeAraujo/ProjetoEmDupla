@@ -5,7 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="232f258d69bd437daf988939446a9967" Name="Diagram1">
-        <EntityTypeShape EntityType="bdDuplaModel.Cliente" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdDuplaModel.Cliente" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="bdDuplaModel.OrdemServico" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="bdDuplaModel.Servico" Width="1.5" PointX="8.125" PointY="1.625" />
+        <EntityTypeShape EntityType="bdDuplaModel.ServicoPorOS" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="bdDuplaModel.FK_Cliente" />
+        <AssociationConnector Association="bdDuplaModel.FK_SOSIDOS" />
+        <AssociationConnector Association="bdDuplaModel.FK_SOSSERVICO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
