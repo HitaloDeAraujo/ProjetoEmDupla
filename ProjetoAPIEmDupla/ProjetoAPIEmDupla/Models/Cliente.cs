@@ -11,7 +11,8 @@ namespace ProjetoAPIEmDupla.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,7 +27,8 @@ namespace ProjetoAPIEmDupla.Models
         public Nullable<System.DateTime> DataNasc { get; set; }
         public string Celular { get; set; }
         public string TelRes { get; set; }
-    
+
+        [IgnoreDataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdemServico> OrdemServico { get; set; }
     }

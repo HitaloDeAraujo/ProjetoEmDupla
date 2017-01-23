@@ -11,7 +11,8 @@ namespace ProjetoAPIEmDupla.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class Servico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,7 +25,8 @@ namespace ProjetoAPIEmDupla.Models
         public string Nome { get; set; }
         public Nullable<float> ValorFinal { get; set; }
         public Nullable<float> Custo { get; set; }
-    
+
+        [IgnoreDataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServicoPorOS> ServicoPorOS { get; set; }
     }

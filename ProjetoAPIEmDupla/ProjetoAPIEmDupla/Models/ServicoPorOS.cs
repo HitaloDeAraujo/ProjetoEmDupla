@@ -11,7 +11,8 @@ namespace ProjetoAPIEmDupla.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class ServicoPorOS
     {
         public int IdSPO { get; set; }
@@ -23,7 +24,8 @@ namespace ProjetoAPIEmDupla.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Pais { get; set; }
-    
+
+        [IgnoreDataMember]
         public virtual OrdemServico OrdemServico { get; set; }
         public virtual Servico Servico { get; set; }
     }
