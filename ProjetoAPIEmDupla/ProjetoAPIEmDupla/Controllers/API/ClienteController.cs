@@ -11,7 +11,7 @@ namespace ProjetoAPIEmDupla.Controllers.API
     public class ClienteController : ApiController
     {
         private bdDuplaEntities bd = new bdDuplaEntities();
-
+        //outro teste
         public IEnumerable<OrdemServico> Get(string id)
         {
             //Hitalo
