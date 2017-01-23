@@ -11,10 +11,9 @@ namespace ProjetoAPIEmDupla.Controllers.API
     public class ClienteController : ApiController
     {
         private bdDuplaEntities bd = new bdDuplaEntities();
-        //outro teste
+
         public IEnumerable<OrdemServico> Get(string id)
         {
-            //Hitalo
             bd.Configuration.ProxyCreationEnabled = false;
 
             var cliente = bd.OrdemServico.Include("Cliente").Where(m => m.IdCliente == id).ToList();
