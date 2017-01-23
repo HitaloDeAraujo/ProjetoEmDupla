@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Data de Contratação</th>
+                    <th>Data de Execução</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: OrdensDeServico">
+                <tr>
+                    <td><span data-bind="text: $data.Cliente.IdCliente || 'IdCliente?'"></span></td>
+                    <td><span data-bind="text: $data.Cliente.Nome || 'Nome?'"></span></td>
+                    <td><span data-bind="text: $data.DataContratacao || 'DataContratacao?'"></span></td>
+                    <td><span data-bind="text: $data.DataExecucao || 'DataExecucao?'"></span></td>
+                    <td><a class="btn btn-info" data-bind="attr: {href: 'os/' + $data.Cliente.IdCliente} ">Detalhes</a></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/knockout-2.1.0.debug.js"></script>
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+    h2 {
+        background-color: aliceblue;
+    }
+</style>
+
+
+<script type="text/javascript">
+    function OrdemDeServicoViewModel() {
+        var self = this;
+        self.OrdensDeServico = ko.observableArray([]);
+
+        $.getJSON("/api/os", function (data) {
+            self.OrdensDeServico(data);
+        });
+    }
+
+    ko.applyBindings(new OrdemDeServicoViewModel());
+
+    $(document).ready(function () {
+        $(window).load(function () {
+            $('#OrdensDeServico').fadeOut(0);
+            $('#OrdensDeServico').fadeIn(1500);
+        });
+
+    });
+</script>

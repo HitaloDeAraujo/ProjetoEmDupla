@@ -28,7 +28,21 @@ namespace ProjetoAPIEmDupla.Controllers.API
 
             return os;
         }
-        
+
+        public IEnumerable<OrdemServico> Get()
+        {
+            bd.Configuration.ProxyCreationEnabled = false;
+
+            var os = bd.OrdemServico.Include("ServicoPorOS").ToList();
+            bd.ServicoPorOS.Include("Servico").ToList();
+            bd.OrdemServico.Include("Cliente").ToList();
+
+            //if (os == null)
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return os;
+        }
+
         public string Post(OrdemServico os)
         {
             try
