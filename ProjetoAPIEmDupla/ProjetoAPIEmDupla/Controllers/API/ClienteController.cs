@@ -25,6 +25,7 @@ namespace ProjetoAPIEmDupla.Controllers.API
 
         public string Post(Cliente cliente)
         {
+            //teste
             try
             {
                 bd.Cliente.Add(cliente);
