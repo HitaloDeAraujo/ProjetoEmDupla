@@ -2,12 +2,101 @@
 <Schema Namespace="bdDuplaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Cliente">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdCliente" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nome" Type="nvarchar(max)" />
+    <Property Name="IdCliente" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataNasc" Type="date" />
+    <Property Name="Celular" Type="nchar" MaxLength="11" />
+    <Property Name="TelRes" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="OrdemServico">
+    <Key>
+      <PropertyRef Name="IdOS" />
+    </Key>
+    <Property Name="IdOS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCliente" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataContratacao" Type="date" />
+    <Property Name="DataExecucao" Type="date" />
+  </EntityType>
+  <EntityType Name="Servico">
+    <Key>
+      <PropertyRef Name="IdServico" />
+    </Key>
+    <Property Name="IdServico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValorFinal" Type="real" />
+    <Property Name="Custo" Type="real" />
+  </EntityType>
+  <EntityType Name="ServicoPorOS">
+    <Key>
+      <PropertyRef Name="IdSPO" />
+      <PropertyRef Name="IdOS" />
+      <PropertyRef Name="IdServico" />
+    </Key>
+    <Property Name="IdSPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdOS" Type="int" Nullable="false" />
+    <Property Name="IdServico" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="varchar" MaxLength="10" />
+    <Property Name="Rua" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bairro" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="OrdemServico" Type="Self.OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOSIDOS">
+    <End Role="OrdemServico" Type="Self.OrdemServico" Multiplicity="1" />
+    <End Role="ServicoPorOS" Type="Self.ServicoPorOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemServico">
+        <PropertyRef Name="IdOS" />
+      </Principal>
+      <Dependent Role="ServicoPorOS">
+        <PropertyRef Name="IdOS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOSSERVICO">
+    <End Role="Servico" Type="Self.Servico" Multiplicity="1" />
+    <End Role="ServicoPorOS" Type="Self.ServicoPorOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servico">
+        <PropertyRef Name="IdServico" />
+      </Principal>
+      <Dependent Role="ServicoPorOS">
+        <PropertyRef Name="IdServico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="bdDuplaModelStoreContainer">
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrdemServico" EntityType="Self.OrdemServico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicoPorOS" EntityType="Self.ServicoPorOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cliente" Association="Self.FK_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOSIDOS" Association="Self.FK_SOSIDOS">
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+      <End Role="ServicoPorOS" EntitySet="ServicoPorOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOSSERVICO" Association="Self.FK_SOSSERVICO">
+      <End Role="Servico" EntitySet="Servico" />
+      <End Role="ServicoPorOS" EntitySet="ServicoPorOS" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,13 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="bdDuplaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="bdDuplaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="bdDuplaModel.Cliente" />
+    <EntitySet Name="OrdemServico" EntityType="bdDuplaModel.OrdemServico" />
+    <EntitySet Name="Servico" EntityType="bdDuplaModel.Servico" />
+    <EntitySet Name="ServicoPorOS" EntityType="bdDuplaModel.ServicoPorOS" />
+    <AssociationSet Name="FK_Cliente" Association="bdDuplaModel.FK_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOSIDOS" Association="bdDuplaModel.FK_SOSIDOS">
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+      <End Role="ServicoPorOS" EntitySet="ServicoPorOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOSSERVICO" Association="bdDuplaModel.FK_SOSSERVICO">
+      <End Role="Servico" EntitySet="Servico" />
+      <End Role="ServicoPorOS" EntitySet="ServicoPorOS" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Cliente">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdCliente" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdCliente" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataNasc" Type="DateTime" Precision="0" />
+    <Property Name="Celular" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="TelRes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="OrdemServico" Relationship="bdDuplaModel.FK_Cliente" FromRole="Cliente" ToRole="OrdemServico" />
   </EntityType>
-  <EntityContainer Name="bdDuplaEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-  </EntityContainer>
+  <EntityType Name="OrdemServico">
+    <Key>
+      <PropertyRef Name="IdOS" />
+    </Key>
+    <Property Name="IdOS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DataContratacao" Type="DateTime" Precision="0" />
+    <Property Name="DataExecucao" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Cliente" Relationship="bdDuplaModel.FK_Cliente" FromRole="OrdemServico" ToRole="Cliente" />
+    <NavigationProperty Name="ServicoPorOS" Relationship="bdDuplaModel.FK_SOSIDOS" FromRole="OrdemServico" ToRole="ServicoPorOS" />
+  </EntityType>
+  <EntityType Name="Servico">
+    <Key>
+      <PropertyRef Name="IdServico" />
+    </Key>
+    <Property Name="IdServico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValorFinal" Type="Single" />
+    <Property Name="Custo" Type="Single" />
+    <NavigationProperty Name="ServicoPorOS" Relationship="bdDuplaModel.FK_SOSSERVICO" FromRole="Servico" ToRole="ServicoPorOS" />
+  </EntityType>
+  <EntityType Name="ServicoPorOS">
+    <Key>
+      <PropertyRef Name="IdSPO" />
+      <PropertyRef Name="IdOS" />
+      <PropertyRef Name="IdServico" />
+    </Key>
+    <Property Name="IdSPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdOS" Type="Int32" Nullable="false" />
+    <Property Name="IdServico" Type="Int32" Nullable="false" />
+    <Property Name="Numero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Rua" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrdemServico" Relationship="bdDuplaModel.FK_SOSIDOS" FromRole="ServicoPorOS" ToRole="OrdemServico" />
+    <NavigationProperty Name="Servico" Relationship="bdDuplaModel.FK_SOSSERVICO" FromRole="ServicoPorOS" ToRole="Servico" />
+  </EntityType>
+  <Association Name="FK_Cliente">
+    <End Type="bdDuplaModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="bdDuplaModel.OrdemServico" Role="OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOSIDOS">
+    <End Type="bdDuplaModel.OrdemServico" Role="OrdemServico" Multiplicity="1" />
+    <End Type="bdDuplaModel.ServicoPorOS" Role="ServicoPorOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemServico">
+        <PropertyRef Name="IdOS" />
+      </Principal>
+      <Dependent Role="ServicoPorOS">
+        <PropertyRef Name="IdOS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOSSERVICO">
+    <End Type="bdDuplaModel.Servico" Role="Servico" Multiplicity="1" />
+    <End Type="bdDuplaModel.ServicoPorOS" Role="ServicoPorOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servico">
+        <PropertyRef Name="IdServico" />
+      </Principal>
+      <Dependent Role="ServicoPorOS">
+        <PropertyRef Name="IdServico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
