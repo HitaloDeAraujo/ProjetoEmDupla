@@ -11,6 +11,7 @@ namespace ProjetoAPIEmDupla.Controllers.API
     public class OSController : ApiController
     {
         private bdDuplaEntities bd = new bdDuplaEntities();
+
         /// <summary>
         /// Busca ordem de servico com base no id
         /// </summary>
@@ -21,15 +22,32 @@ namespace ProjetoAPIEmDupla.Controllers.API
             var os = bd.OrdemServico.Include("ServicoPorOS").Where(m => m.IdOS == id).SingleOrDefault();
             bd.ServicoPorOS.Include("Servico").Where(m => m.IdOS == id).ToList();
             bd.OrdemServico.Include("Cliente").Where(m => m.IdOS == id).SingleOrDefault();
-            
+
+            //if (os == null)
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+
             return os;
         }
 
-        public string Post(Cliente cliente)
+        public IEnumerable<OrdemServico> Get()
+        {
+            bd.Configuration.ProxyCreationEnabled = false;
+
+            var os = bd.OrdemServico.Include("ServicoPorOS").ToList();
+            bd.ServicoPorOS.Include("Servico").ToList();
+            bd.OrdemServico.Include("Cliente").ToList();
+
+            //if (os == null)
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return os;
+        }
+
+        public string Post(OrdemServico os)
         {
             try
             {
-                bd.Cliente.Add(cliente);
+                bd.OrdemServico.Add(os);
                 bd.SaveChanges();
                 return "Success";
             }
