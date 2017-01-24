@@ -11,7 +11,7 @@ namespace ProjetoAPIEmDupla.Controllers.API
     public class ClienteController : ApiController
     {
         private bdDuplaEntities bd = new bdDuplaEntities();
-        
+
         public IEnumerable<OrdemServico> Get(string id)
         {
             bd.Configuration.ProxyCreationEnabled = false;
