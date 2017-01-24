@@ -45,8 +45,6 @@
 <script type="text/javascript">
     function OrdemDeServicoViewModel(id) {
         var self = this;
-        var id = @ViewBag.id;
-
         self.OrdemDeServico = ko.observable();
     
         $.getJSON("/api/os/" + id, function (data) {
