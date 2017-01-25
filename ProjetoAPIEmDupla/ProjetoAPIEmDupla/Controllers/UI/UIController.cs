@@ -20,5 +20,10 @@ namespace ProjetoAPIEmDupla.Controllers.UI
 
             return View();
         }
+
+        public ActionResult Cliente(string id)
+        {
+            return View();
+        }
     }
 }

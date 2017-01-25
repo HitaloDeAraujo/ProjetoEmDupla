@@ -23,6 +23,17 @@ namespace ProjetoAPIEmDupla.Controllers.API
             return cliente;
         }
 
+        public IEnumerable<OrdemServico> Get()
+        {
+            bd.Configuration.ProxyCreationEnabled = false;
+
+            var cliente = bd.OrdemServico.Include("Cliente").ToList();
+            bd.OrdemServico.Include("ServicoPorOS").ToList();
+            bd.ServicoPorOS.Include("Servico").ToList();
+
+            return cliente;
+        }
+
         public string Post(Cliente cliente)
         {
             try
