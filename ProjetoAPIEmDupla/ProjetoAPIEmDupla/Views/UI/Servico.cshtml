@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Servico";
+}
+
+<h2>Servico</h2>
+
+<div class="container">
+    <div class="modal fade" id="modalDetalhes" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalhes do Serviço</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Atributo</th>
+                            <th>Valor</th>
+                        </tr>
+                        <tr>
+                            <td><label for="IdServico">IdServico</label></td>
+                            <td><span id="IdServico"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nome">Nome</label></td>
+                            <td><span id="nome"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ValorFinal">Valor Final</label></td>
+                            <td><span id="ValorFinal"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="Custo">Custo</label></td>
+                            <td><span id="Custo"></span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" id="nome" />
+
+    <label for="valorfinal">Valor Final</label>
+    <input type="text" class="form-control" id="valorfinal" />
+
+    <label for="custo">Custo</label>
+    <input type="text" class="form-control" id="custo" />
+
+    <a class="btn btn-success">Cadastrar</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor Final</th>
+                <th>Custo</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Servico">
+            <tr>
+                <td><span data-bind="text: $data.IdServico || 'IdServico?'"></span></td>
+                <td><span data-bind="text: $data.Nome || 'Nome?'"></span></td>
+                <td><span data-bind="text: $data.ValorFinal || 'Valor Final?'"></span></td>
+                <td><span data-bind="text: $data.Custo || 'Custo?'"></span></td>
+                <td>
+                    <a class="btn btn-info detalhes" data-toggle="modal" data-target="#modalDetalhes" data-id="1">Detalhes</a>
+                    <a class="b2">Editar</a>
+                    <a class="btn btn-danger">Excluir</a>
+
+                    <a class="btn btn-info xp" id="31" data-id="2">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+<a class="btn btn-info detalhes" data-id="2">Editar</a>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/knockout-2.1.0.debug.js"></script>
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".detalhes").click(function () {
+            alert("teste");
+
+            var id = $(this).attr("data-id");
+            //$("#modal").load("Details?id=" + id, function () {
+            //    $("#modal").modal();
+            //})
+            
+            Detalhes(id);
+        });
+    })
+
+    function Detalhes(id) {
+        $.getJSON("/api/servico/" + id, function (data) {
+            var resultado = data;
+
+            alert(id);
+            //alert(resultado.IdServico);
+            //alert(resultado.Nome);
+            //alert(resultado.ValorFinal);
+            //alert(resultado.Custo);
+
+            $("#IdServico").text(resultado.IdServico);
+            $("#nome").text(resultado.Nome);
+            $("#ValorFinal").text(resultado.ValorFinal);
+            $("#Custo").text(resultado.Custo);
+        });
+
+    }
+
+    function ServicoViewModel() {
+        var self = this;
+        self.Servico = ko.observableArray([]);
+
+        $.getJSON("/api/servico", function (data) {
+            self.Servico(data);
+        });
+    }
+
+    ko.applyBindings(new ServicoViewModel());
+
+    $(document).ready(function () {
+        $(window).load(function () {
+            $('#Servico').fadeOut(0);
+            $('#Servico').fadeIn(1500);
+        });
+    });
+</script>

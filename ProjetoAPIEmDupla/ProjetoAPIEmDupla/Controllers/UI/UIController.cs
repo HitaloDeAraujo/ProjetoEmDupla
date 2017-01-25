@@ -19,7 +19,7 @@ namespace ProjetoAPIEmDupla.Controllers.UI
             return View();
         }
 
-        public ActionResult Servico(int id)
+        public ActionResult Servico()
         {
             return View();
         }
