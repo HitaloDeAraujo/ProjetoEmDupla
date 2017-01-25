@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Cliente\" />
+    <Folder Include="Views\Servico\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\API\ClienteController.cs" />
     <Compile Include="Controllers\API\OSController.cs" />
+    <Compile Include="Controllers\API\ServicoController.cs" />
     <Compile Include="Controllers\UI\UIController.cs" />
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>ModeloDeDadosDupla.tt</DependentUpon>
@@ -312,7 +314,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\UI\OS.cshtml" />
     <Content Include="Views\UI\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\UI\Cliente.cshtml" />
+=======
+    <Content Include="Views\UI\Servico.cshtml" />
+>>>>>>> 7d6d38ce6190afc7d570e3d172531b1794b9ac7a
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

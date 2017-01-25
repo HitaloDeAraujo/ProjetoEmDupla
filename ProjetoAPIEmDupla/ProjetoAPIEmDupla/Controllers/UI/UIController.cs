@@ -16,8 +16,11 @@ namespace ProjetoAPIEmDupla.Controllers.UI
 
         public ActionResult OS(int id)
         {
-            ViewBag.id = id;
+            return View();
+        }
 
+        public ActionResult Servico()
+        {
             return View();
         }
 
